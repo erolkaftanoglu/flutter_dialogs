@@ -9,9 +9,9 @@ import 'package:flutter_dialogs/src/base_dialog.dart';
 
 class BasicDialogAlertData extends BaseDialogData {
   BasicDialogAlertData({
-    Widget title,
-    Widget content,
-    List<Widget> actions,
+    Widget? title,
+    Widget? content,
+    List<Widget>? actions,
   }) : super(
           title: title,
           content: content,
@@ -29,26 +29,26 @@ class BasicDialogAlert extends BaseDialog<AlertDialog, CupertinoAlertDialog> {
   });
 
   /// Represents appropriate [Widget] to display in title section.
-  final Widget title;
+  final Widget? title;
 
   /// Represents appropriate [Widget] to display in content section.
-  final Widget content;
+  final Widget? content;
 
   /// Represents appropriate list of [Widget]'s to display in actions section.
-  final List<Widget> actions;
+  final List<Widget>? actions;
 
   /// Additional configuration on top of [BasicDialogAlertData]'s default configuration.
-  final BaseDialogBuilder<BasicDialogAlertData> android;
+  final BaseDialogBuilder<BasicDialogAlertData>? android;
 
   /// Additional configuration on top of [BasicDialogAlertData]'s default configuration.
-  final BaseDialogBuilder<BasicDialogAlertData> ios;
+  final BaseDialogBuilder<BasicDialogAlertData>? ios;
 
   @override
   AlertDialog buildAndroidWidget(BuildContext context) {
-    BasicDialogAlertData data;
+    BasicDialogAlertData? data;
 
     if (android != null) {
-      data = android(context);
+      data = android!(context);
     }
 
     return AlertDialog(
@@ -60,16 +60,16 @@ class BasicDialogAlert extends BaseDialog<AlertDialog, CupertinoAlertDialog> {
 
   @override
   CupertinoAlertDialog buildiOSWidget(BuildContext context) {
-    BasicDialogAlertData data;
+    BasicDialogAlertData? data;
 
     if (ios != null) {
-      data = ios(context);
+      data = ios!(context);
     }
 
     return CupertinoAlertDialog(
       title: data?.title ?? title,
       content: data?.content ?? content,
-      actions: data?.actions ?? actions,
+      actions: data?.actions ?? actions!,
     );
   }
 }
